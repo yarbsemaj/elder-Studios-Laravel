@@ -12,9 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('ID/{id}',function($id){
-   echo 'ID: '.$id;
-});
+//Route::get('ID/{id}',function($id){
+//   echo 'ID: '.$id;
+//});
+
+//Route::get('fish',function(){
+//   echo "are friends, not food";
+//});
+
+

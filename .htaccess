@@ -1,15 +1,12 @@
 <IfModule mod_rewrite.c>
-    RewriteBase /public
     <IfModule mod_negotiation.c>
-        Options +FollowSymlinks -MultiViews
+        Options -MultiViews
     </IfModule>
 
     RewriteEngine On
 
-    #1and1 to enable PHP 5.4
-    AddHandler x-mapp-php6 .php 
-
-    # Redirect Trailing Slashes...
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     # Handle Front Controller...
@@ -17,6 +14,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-
-
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>

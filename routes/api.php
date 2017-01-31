@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('leaderBoard','getLeaderBoard@getTop10');
+
+Route::post('playerInfo','members@get');
+
+Route::post('addMember','members@add');
+
+Route::post('editMember','members@edit');
