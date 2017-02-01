@@ -19,8 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('leaderBoard','getLeaderBoard@getTop10');
 
-Route::post('playerInfo','members@get');
+Route::post('playerInfo','members@get')->middleware('memberExist','checkParams:memberID');
 
-Route::post('addMember','members@add');
+Route::post('addMember','members@add')->middleware('checkParams:name,adress1,adress2,postCode');
 
-Route::post('editMember','members@edit');
+Route::post('editMember','members@edit')->middleware('checkParams:name,adress1,adress2,postCode,memberID');
