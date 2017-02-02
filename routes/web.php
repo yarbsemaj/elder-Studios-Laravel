@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/add/random/{number}','gameControler@random');
+
 //Route::get('ID/{id}',function($id){
 //   echo 'ID: '.$id;
 //});
