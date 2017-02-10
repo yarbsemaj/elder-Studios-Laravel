@@ -32,6 +32,9 @@ class members extends Controller
             $opponentGame=$bestScore->opponentGame();
             $bestGame=$opponentGame->game();
             $bestMember=$opponentGame->member();
+
+            $membershipData->wins=$membershipData->wins();
+            $membershipData->loss=$membershipData->loss();
             
             $best=array("gameID"=>$bestScore->gameID,
             "playerScore"=> $bestScore->score,

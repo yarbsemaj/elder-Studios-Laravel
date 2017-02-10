@@ -54,7 +54,7 @@ app.controller('memberInfo', function ($scope, $http) {
                     $scope.opName = response.data.bestGame.opName;
                     $scope.time = new Date(response.data.bestGame.time);
                     $scope.loss = response.data.memberData.loss;
-                    $scope.avg = response.data.memberData.avg;
+                    $scope.avg = response.data.memberData.avgScore;
                     $scope.wins = response.data.memberData.wins;
                 }
                 $scope.gamesPlayed = response.data.memberData.gamesPlayed;

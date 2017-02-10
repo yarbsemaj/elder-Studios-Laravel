@@ -16,7 +16,7 @@ class Member extends Model
     }
     
     public function getAvgScoreAttribute(){
-        return $this->gameMember->avg('score');
+        return round($this->gameMember->avg('score'),2);
     }
     
     public function getGamesPlayedAttribute(){
@@ -27,7 +27,7 @@ class Member extends Model
         return $this->gameMember->where("memberID",$this->memberID);
     }
     
-    public function getWinsAttribute(){
+    public function wins(){
         $wins=0;
         foreach ($this->MemberScores as $yourScore){
             $yourGameScore=$yourScore["score"];
@@ -37,7 +37,7 @@ class Member extends Model
         return $wins;
     }
     
-    public function getLossAttribute(){
+    public function loss(){
         $loss=0;
         foreach ($this->MemberScores as $yourScore){
             $yourGameScore=$yourScore["score"];
@@ -46,4 +46,5 @@ class Member extends Model
         }
         return $loss;
     }
+    
 }
