@@ -22,15 +22,10 @@ class members extends Controller
         $gameMembers= GameMember::all();
         $games = Game::all();
         
-        $yourScores = $gameMembers->where("memberID",$memberID);
-        foreach ($yourScores as $yourScore){
-            $yourGameScore=$yourScore["score"];
-            $theirGameScore=$yourScore->opponentGame()["score"];
-            if($yourGameScore>$theirGameScore)$wins++;
-            if($yourGameScore<$theirGameScore)$loss++;
-        }
-        $avg=$yourScores->avg('score');
-        $gamesPlayed=$yourScores->count();
+        $yourScores = $membershipData->memberScores;
+        $avg=$membershipData->avgScore;
+        $gamesPlayed=$membershipData->gamesPlayed;
+
         $best=null;
         if($gamesPlayed!=0){
             $bestScore=$yourScores->sortbyDesc('score')->first();
@@ -46,10 +41,7 @@ class members extends Controller
             "time"=>$bestGame->time);
         }
         
-        
-        return array("success"=>true,"memberData"=>$membershipData,"gamesPlayed"=>$gamesPlayed, "wins"=>$wins, "loss"=>$loss, "avg"=>$avg, "bestGame"=>  $best);
-        
-        
+        return array("success"=>true,"memberData"=>$membershipData, "bestGame"=>  $best);
     }
     
     function add(Request $request){

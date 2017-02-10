@@ -47,17 +47,17 @@ app.controller('memberInfo', function ($scope, $http) {
             console.log(response.data);
             if (response.data.success) {
                 memberPath = "edit";
-                if (response.data.gamesPlayed != 0) {
+                if (response.data.memberData.gamesPlayed != 0) {
                     $scope.opScore = response.data.bestGame.opScore;
                     $scope.playerScore = response.data.bestGame.playerScore;
                     $scope.location = response.data.bestGame.location;
                     $scope.opName = response.data.bestGame.opName;
                     $scope.time = new Date(response.data.bestGame.time);
-                    $scope.loss = response.data.loss;
-                    $scope.avg = response.data.avg;
-                    $scope.wins = response.data.wins;
+                    $scope.loss = response.data.memberData.loss;
+                    $scope.avg = response.data.memberData.avg;
+                    $scope.wins = response.data.memberData.wins;
                 }
-                $scope.gamesPlayed=response.data.gamesPlayed;
+                $scope.gamesPlayed = response.data.memberData.gamesPlayed;
                 $("#playerInfo").modal();
 
                 $scope.joinDate = new Date(response.data.memberData.joinDate);

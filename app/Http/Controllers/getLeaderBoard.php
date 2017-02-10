@@ -13,12 +13,8 @@ class getLeaderBoard extends Controller
         $members=Member::all();
         foreach($members as $member){
             $gameMember = $member->gameMember();
-            $gamesPlayed = $gameMember->count();
-            $avg = $gameMember->avg("score");
-            $member->gamesPlayed=$gamesPlayed;
-            $member->avgScore=$avg;
         }
-        $return=$members->where("score","<=","10")->sortByDESC("avgScore")->take(10);
+        $return=$members->where("gamesPlayed",">=","10")->sortByDESC("avgScore")->take(10);
         return  array_values($return->toArray());
     }
 }
