@@ -21,7 +21,7 @@ class CheckMemberExist
         $member = Member::find($request->memberID);
         if($member==null)
         {
-            return array("success"=>false);
+            return response()->json(array("success"=>false));
         }
         return $next($request);
     }
