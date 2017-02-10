@@ -5,14 +5,20 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Member;
 
 class getLeaderBoard extends Controller
 {
     public function getTop10 (){
-        $top10=DB::select("SELECT m.name , m.memberID , COUNT(*) AS gamesPlayed , ROUND(AVG (gp.score),0) AS avgScore FROM gamePlayers AS gp
-        JOIN member AS m ON gp.memberID = m.memberID
-        GROUP BY memberID HAVING gamesPlayed >= 10 ORDER BY avgScore DESC LIMIT 10");
-        
-        return response()->json($top10);
+        $members=Member::all();
+        foreach($members as $member){
+            $gameMember = $member->gameMember();
+            $gamesPlayed = $gameMember->count();
+            $avg = $gameMember->avg("score");
+            $member->gamesPlayed=$gamesPlayed;
+            $member->avgScore=$avg;
+        }
+        $return=$members->where("score","<=","10")->sortByDESC("avgScore")->take(10);
+        return  array_values($return->toArray());
     }
 }

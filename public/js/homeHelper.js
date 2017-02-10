@@ -52,7 +52,7 @@ app.controller('memberInfo', function ($scope, $http) {
                     $scope.playerScore = response.data.bestGame.playerScore;
                     $scope.location = response.data.bestGame.location;
                     $scope.opName = response.data.bestGame.opName;
-                    $scope.time = response.data.bestGame.time;
+                    $scope.time = new Date(response.data.bestGame.time);
                     $scope.loss = response.data.loss;
                     $scope.avg = response.data.avg;
                     $scope.wins = response.data.wins;
@@ -60,7 +60,7 @@ app.controller('memberInfo', function ($scope, $http) {
                 $scope.gamesPlayed=response.data.gamesPlayed;
                 $("#playerInfo").modal();
 
-                $scope.joinDate = response.data.memberData.joinDate;
+                $scope.joinDate = new Date(response.data.memberData.joinDate);
                 $scope.name = response.data.memberData.name;
                 $scope.adress1 = response.data.memberData.adress1;
                 $scope.adress2 = response.data.memberData.adress2;

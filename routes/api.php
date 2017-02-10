@@ -23,4 +23,4 @@ Route::post('playerInfo','members@get')->middleware('memberExist','checkParams:m
 
 Route::post('addMember','members@add')->middleware('checkParams:name,adress1,adress2,postCode');
 
-Route::post('editMember','members@edit')->middleware('checkParams:name,adress1,adress2,postCode,memberID');
+Route::post('editMember','members@edit')->middleware('memberExist','checkParams:name,adress1,adress2,postCode,memberID');

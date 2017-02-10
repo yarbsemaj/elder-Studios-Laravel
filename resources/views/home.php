@@ -112,7 +112,7 @@
           </div>
           <div class="modal-body">
             <h2 class="text-muted">{{name}}</h2>
-            <h4>{{joinDate * 1000 | date:'d MMMM y'}}</h4>
+            <h4>{{joinDate| date:'d MMMM y'}}</h4>
             <p>{{adress1}}</p>
             <p>{{adress2}}</p>
             <p>{{postCode}}</p>
@@ -148,7 +148,7 @@
                 </div>
               </div>
               <h3 class="text-muted">Against</h3>
-              <p>{{opName}} at {{location}} on {{time * 1000 | date:'d MMMM y h:m a'}}</p>
+              <p>{{opName}} at {{location}} on {{time| date:'d MMMM y h:m a'}}</p>
             </div>
           </div>
           <div class="modal-footer">

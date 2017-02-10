@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use DB;
+use App\Member;
 
 class CheckMemberExist
 {
@@ -16,11 +17,11 @@ class CheckMemberExist
     */
     public function handle($request, Closure $next)
     {
-        $memberID = $request->input('memberID');
-        $membershipData=DB::select("SELECT *  FROM member WHERE memberID = '$memberID'");
-        if(count($membershipData)==0)
+        $memberID = $request->memberID;
+        $member = Member::find($request->memberID);
+        if($member==null)
         {
-            return response()->json(array("success"=>false));
+            return array("success"=>false);
         }
         return $next($request);
     }
