@@ -23,13 +23,10 @@ class Member extends Model
         return $this->gameMember->count();
     }
     
-    public function getMemberScoresAttribute(){
-        return $this->gameMember->where("memberID",$this->memberID);
-    }
     
     public function wins(){
         $wins=0;
-        foreach ($this->MemberScores as $yourScore){
+        foreach ($this->gameMember()->get() as $yourScore){
             $yourGameScore=$yourScore["score"];
             $theirGameScore=$yourScore->opponentGame()["score"];
             if($yourGameScore>$theirGameScore)$wins++;
@@ -39,7 +36,7 @@ class Member extends Model
     
     public function loss(){
         $loss=0;
-        foreach ($this->MemberScores as $yourScore){
+        foreach ($this->gameMember()->get() as $yourScore){
             $yourGameScore=$yourScore["score"];
             $theirGameScore=$yourScore->opponentGame()["score"];
             if($yourGameScore<$theirGameScore)$loss++;

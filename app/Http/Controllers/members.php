@@ -22,7 +22,9 @@ class members extends Controller
         $gameMembers= GameMember::all();
         $games = Game::all();
         
-        $yourScores = $membershipData->memberScores;
+        $yourScores = $membershipData->gameMember()->get();
+
+
         $avg=$membershipData->avgScore;
         $gamesPlayed=$membershipData->gamesPlayed;
 
@@ -35,7 +37,7 @@ class members extends Controller
 
             $membershipData->wins=$membershipData->wins();
             $membershipData->loss=$membershipData->loss();
-            
+
             $best=array("gameID"=>$bestScore->gameID,
             "playerScore"=> $bestScore->score,
             "opName"=>$bestMember->name,
